@@ -53,7 +53,6 @@ public class EntryRepositoryImpl implements EntryRepository{
             }
         }
         throw new NullPointerException("Invalid ID");
-//        return null;
     }
 
     @Override

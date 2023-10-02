@@ -102,8 +102,6 @@ public class DiaryRepositoryImplTest {
         diary.setUsername("Ogbuagu Adaobi");
         diaryRepository.clear();
         assertThrows(NullPointerException.class, ()-> diaryRepository.findById(5));
-
-//        assertNull(0,  diary.getDiaryId(), diary2.getDiaryId(), diaryRepository.findById(0).getUsername());
     }
     @Test
     public void testThatDiaryCanFindAll(){
@@ -117,5 +115,6 @@ public class DiaryRepositoryImplTest {
         diary.setUsername("Ogbuagu Adaobi");
         diaryRepository.save(diary2);
         Iterable<Diary> diaries = diaryRepository.findAll();
+        assertEquals(diaries, diaryRepository.findAll());
     }
     }

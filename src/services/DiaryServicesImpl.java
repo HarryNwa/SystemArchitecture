@@ -9,18 +9,13 @@ public class DiaryServicesImpl implements DiaryServices {
     @Override
     public void register(String username, String password) {
         Diary diary = new Diary();
-        diary.setUsername(username);
+        diary.setUsername(validate(username));
         diary.setPassword(password);
         diaryRepository.saveNewDiary(diary);
+
     }
 
-    public void validate(String userName){
-        for (Diary diary: diaryRepository.findAll()){
-            if (diary.getUsername().equals(userName))
-                throw new IllegalArgumentException("Username already used");
-        }
-    }
-
+    @Override
     public Diary findByUserName(String userName) {
         for (Diary diary : diaryRepository.findAll()) {
             if (diary.getUsername().equals(userName)) {
@@ -30,12 +25,23 @@ public class DiaryServicesImpl implements DiaryServices {
         throw new IllegalArgumentException("Diary not found");
     }
 
-    public  void delete(String userName){
+    @Override
+    public void delete(String userName) {
         validate(userName);
         Diary diaryRepository1 = findByUserName(userName);
         diaryRepository.delete(diaryRepository1);
     }
-    public long count(){
+
+    @Override
+    public long count() {
         return diaryRepository.count();
+    }
+
+    private String validate(String userName){
+        for (Diary diary: diaryRepository.findAll()){
+            if (diary.getUsername().equals(userName))
+                throw new IllegalArgumentException("Username already used");
+        }
+        return userName;
     }
 }
