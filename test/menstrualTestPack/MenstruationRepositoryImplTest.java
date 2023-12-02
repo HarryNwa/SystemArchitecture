@@ -49,6 +49,7 @@ public class MenstruationRepositoryImplTest {
         Date calculate = menstrualPeriod.findStartFlow(checkDate);
         Date result = new Date(2023 - 1900, 10, 22);
         assertEquals(result, calculate);
+
     }
 
 }

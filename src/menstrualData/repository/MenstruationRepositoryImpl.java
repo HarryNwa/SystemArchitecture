@@ -1,9 +1,15 @@
 package menstrualData.repository;
 
-import java.util.Date;
-import java.util.InputMismatchException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class MenstruationRepositoryImpl implements MenstruationRepository {
+    private final List<LocalDate> periodStartDates = new ArrayList<>();
+    private Scanner keyBoard = new Scanner(System.in);
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     @Override
     public String register(int age, String username, String password) {
         return null;
@@ -11,7 +17,7 @@ public class MenstruationRepositoryImpl implements MenstruationRepository {
 
     @Override
     public Date findSafePeriodStart(Date checkDate) {
-        long checkStart = checkDate.getTime() - (10 * 24 * 60 * 60 * 1000L);
+        long checkStart = checkDate.getTime() - (4 * 24 * 60 * 60 * 1000L);
         return new Date(checkStart);
     }
 
@@ -23,15 +29,16 @@ public class MenstruationRepositoryImpl implements MenstruationRepository {
 
     @Override
     public Date findSafePeriodEnd(Date checkDate) {
-        long checkEnd = checkDate.getTime() + (10 * 24 * 60 * 60 * 1000L);
+        long checkEnd = checkDate.getTime() + (4 * 24 * 60 * 60 * 1000L);
         return new Date(checkEnd);
     }
 
     @Override
     public Date checkOvulation(Date cycleLength) {
-        if (cycleLength.getTime() < 0 ) {
+        if (cycleLength.getTime() < 0) {
             throw new InputMismatchException("Date does not align");
-        }else {long checkOvulation = cycleLength.getTime() + (11 * 24 * 60 * 60 * 1000L);
+        } else {
+            long checkOvulation = cycleLength.getTime() + (11 * 24 * 60 * 60 * 1000L);
             return new Date(checkOvulation);
         }
     }
@@ -45,7 +52,7 @@ public class MenstruationRepositoryImpl implements MenstruationRepository {
     @Override
     public Date findEndFlow(Date checkFlow) {
 //        checkFlowEnd = null;
-        long checkEnd = checkFlow.getTime() + (28  * 24 * 60 * 60 * 1000L);
+        long checkEnd = checkFlow.getTime() + (28 * 24 * 60 * 60 * 1000L);
         return new Date(checkEnd);
     }
 }

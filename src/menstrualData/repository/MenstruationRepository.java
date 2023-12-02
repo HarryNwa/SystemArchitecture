@@ -1,5 +1,6 @@
 package menstrualData.repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public interface MenstruationRepository {
@@ -10,5 +11,4 @@ public interface MenstruationRepository {
     Date checkOvulation(Date checkDate);
     Date findStartFlow(Date checkFlow);
     Date findEndFlow(Date checkFlow);
-
 }

@@ -7,7 +7,7 @@ public interface EntryRepository {
         void delete(Entry entry);
         long count();
         Entry findEntryById(int entryId);
-
+        Entry findEntryByTitle(String ownerName, String title);
         Iterable<Entry> findAll();
         void clear();
 

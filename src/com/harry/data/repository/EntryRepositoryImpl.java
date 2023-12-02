@@ -56,6 +56,18 @@ public class EntryRepositoryImpl implements EntryRepository{
     }
 
     @Override
+    public Entry findEntryByTitle(String ownerName, String title) {
+        for (Entry entry : entries) {
+            if (entry.getOwner().equalsIgnoreCase(ownerName)
+                    && entry.getTitle().equalsIgnoreCase(title)) {
+                return entry;
+            }
+        }
+        return null;
+//        throw new NullPointerException("Invalid ID");
+    }
+
+    @Override
     public Iterable<Entry> findAll () {
         return entries;
     }

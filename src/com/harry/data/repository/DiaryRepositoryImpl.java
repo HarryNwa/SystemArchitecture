@@ -60,6 +60,11 @@ public class DiaryRepositoryImpl implements DiaryRepository{
     }
 
     @Override
+    public Diary findBy(int id) {
+        return null;
+    }
+
+    @Override
     public Iterable<Diary> findAll() {
         return diaries;
     }
@@ -72,6 +77,14 @@ public class DiaryRepositoryImpl implements DiaryRepository{
     @Override
     public String getDiaryUsername() {
         return username;
+    }
+
+    @Override
+    public Diary findByUsername(String userName) {
+        for (Diary diary : diaries)
+            if (diary.getUsername().equalsIgnoreCase(userName))
+                return diary;
+        return null;
     }
 }
 
